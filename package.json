@@ -1,0 +1,51 @@
+{
+  "name": "blockchain_governance",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "dev": "truffle migrate --reset",
+    "test": "truffle migrate --reset && truffle test",
+    "fund-metamask": "truffle exec ./fund-metamask.js",
+    "rinkeby": "truffle migrate --network rinkeby",
+    "geth:rinkeby": "geth --rinkeby --http --syncmode \"light\" --http.api eth,net,web3,personal --allow-insecure-unlock",
+    "ganache": "ganache-cli -p 8546",
+    "lint": "npm run lint:js && npm run lint:sol",
+    "lint:fix": "npm run lint:js:fix && npm run lint:sol:fix",
+    "lint:js": "eslint --ignore-path .gitignore .",
+    "lint:js:fix": "eslint --ignore-path .gitignore . --fix",
+    "lint:sol": "solhint 'contracts/**/*.sol' && prettier -c 'contracts/**/*.sol'",
+    "lint:sol:fix": "prettier --write \"contracts/**/*.sol\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WuBruno/Blockchain-based-Governance.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WuBruno/Blockchain-based-Governance/issues"
+  },
+  "homepage": "https://github.com/WuBruno/Blockchain-based-Governance#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.6.0",
+    "web3": "^1.7.3"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-mocha": "^10.0.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-promise": "^5.2.0",
+    "prettier": "2.7.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.19",
+    "solhint": "^3.3.7",
+    "solhint-plugin-prettier": "^0.0.5"
+  }
+}
