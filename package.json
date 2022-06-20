@@ -9,16 +9,19 @@
   "scripts": {
     "dev": "truffle migrate --reset",
     "test": "truffle migrate --reset && truffle test",
-    "fund-metamask": "truffle exec ./fund-metamask.js",
     "rinkeby": "truffle migrate --network rinkeby",
     "geth:rinkeby": "geth --rinkeby --http --syncmode \"light\" --http.api eth,net,web3,personal --allow-insecure-unlock",
+    "geth:goerli": "geth --goerli --http --syncmode \"light\" --http.api eth,net,web3,personal --allow-insecure-unlock",
+    "geth:console": "geth attach http://127.0.0.1:8545",
     "ganache": "ganache-cli -p 8546",
     "lint": "npm run lint:js && npm run lint:sol",
     "lint:fix": "npm run lint:js:fix && npm run lint:sol:fix",
     "lint:js": "eslint --ignore-path .gitignore .",
     "lint:js:fix": "eslint --ignore-path .gitignore . --fix",
     "lint:sol": "solhint 'contracts/**/*.sol' && prettier -c 'contracts/**/*.sol'",
-    "lint:sol:fix": "prettier --write \"contracts/**/*.sol\""
+    "lint:sol:fix": "prettier --write \"contracts/**/*.sol\"",
+    "generate-types": "npx typechain --target=truffle-v5 'build/contracts/*.json'",
+    "postinstall": "npx truffle compile && npm run generate-types"
   },
   "repository": {
     "type": "git",
@@ -32,9 +35,15 @@
   "homepage": "https://github.com/WuBruno/Blockchain-based-Governance#readme",
   "dependencies": {
     "@openzeppelin/contracts": "^4.6.0",
+    "@truffle/hdwallet-provider": "^2.0.9",
+    "dotenv": "^16.0.1",
     "web3": "^1.7.3"
   },
   "devDependencies": {
+    "@typechain/truffle-v5": "^8.0.1",
+    "@types/chai": "^4.3.1",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^18.0.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^16.0.3",
@@ -46,6 +55,10 @@
     "prettier": "2.7.1",
     "prettier-plugin-solidity": "^1.0.0-beta.19",
     "solhint": "^3.3.7",
-    "solhint-plugin-prettier": "^0.0.5"
+    "solhint-plugin-prettier": "^0.0.5",
+    "truffle": "^5.5.18",
+    "ts-node": "^10.8.1",
+    "typechain": "^8.1.0",
+    "typescript": "^4.7.4"
   }
 }

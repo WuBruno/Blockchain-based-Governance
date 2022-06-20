@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 /**
  * Use this file to configure your truffle project. It's seeded with some
  * common settings for different networks and features like migrations,
@@ -19,10 +18,17 @@
  *
  */
 
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
+require('ts-node').register({
+  files: true,
+});
+
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
+require('dotenv').config();
+
+const { API_URL, MNEMONIC } = process.env;
 
 module.exports = {
   /**
@@ -45,6 +51,7 @@ module.exports = {
     development: {
       host: '127.0.0.1', // Localhost (default: none)
       port: 8546, // Standard Ethereum port (default: none)
+      // eslint-disable-next-line camelcase
       network_id: '*', // Any network (default: none)
     },
     // Another network with more advanced options...
@@ -75,9 +82,18 @@ module.exports = {
     rinkeby: {
       host: 'localhost',
       port: 8545,
+      // eslint-disable-next-line camelcase
       network_id: '4',
       from: '0x647d61d93bda04a3c507f3ee34748e6e11771183',
       gas: 4600000,
+    },
+    goerli: {
+      provider: function () {
+        return new HDWalletProvider(MNEMONIC, API_URL);
+      },
+      // eslint-disable-next-line camelcase
+      network_id: '4',
+      gas: 5000000,
     },
   },
 
