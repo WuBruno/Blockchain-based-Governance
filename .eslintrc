@@ -1,6 +1,7 @@
 {
-  "extends": ["standard", "plugin:prettier/recommended"],
-  "plugins": ["mocha", "prettier"],
+  "extends": ["standard", "plugin:prettier/recommended", "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"],
+  "plugins": ["mocha", "prettier", "@typescript-eslint"],
   "env": {
     "browser": true,
     "node": true,
@@ -53,6 +54,7 @@
 
     "prettier/prettier": "error"
   },
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2018
   }

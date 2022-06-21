@@ -1,10 +1,13 @@
+import Web3 from 'web3';
+import Truffle from '@typechain/truffle-v5';
+
 type Network = 'development' | 'kovan' | 'mainnet';
 
-module.exports = (artifacts: Truffle.Artifacts, web3: Web3) => {
+module.exports = (artifacts: Truffle.Artifacts, _web3: Web3) => {
   return async (
     deployer: Truffle.Deployer,
-    network: Network,
-    accounts: string[],
+    _network: Network,
+    _accounts: string[],
   ) => {
     const ICVCMToken = artifacts.require('ICVCMToken');
     const ICVCMGovernor = artifacts.require('ICVCMGovernor');
