@@ -9,19 +9,21 @@
   "scripts": {
     "dev": "truffle migrate --reset",
     "test": "truffle migrate --reset && truffle test",
+    "compile": "truffle compile && yarn artifacts",
+    "artifacts": "cp -r ./build/contracts/ ../icvcm_website/contracts/",
     "ganache": "ganache-cli -p 8546",
-    "rinkeby": "truffle migrate --network rinkeby",
+    "rinkeby": "truffle migrate --network rinkeby --reset",
     "geth:rinkeby": "geth --rinkeby --http --syncmode \"light\" --http.api eth,net,web3,personal --allow-insecure-unlock",
     "geth:goerli": "geth --goerli --http --syncmode \"light\" --http.api eth,net,web3,personal --allow-insecure-unlock",
     "geth:console": "geth attach http://127.0.0.1:8545",
-    "lint": "npm run lint:ts && npm run lint:sol",
-    "lint:fix": "npm run lint:ts:fix && npm run lint:sol:fix",
+    "lint": "yarn run lint:ts && yarn run lint:sol",
+    "lint:fix": "yarn run lint:ts:fix && yarn run lint:sol:fix",
     "lint:ts": "eslint --ignore-path .gitignore .",
     "lint:ts:fix": "eslint --ignore-path .gitignore . --fix",
     "lint:sol": "solhint 'contracts/**/*.sol' && prettier -c 'contracts/**/*.sol'",
     "lint:sol:fix": "prettier --write \"contracts/**/*.sol\"",
     "generate-types": "npx typechain --target=truffle-v5 'build/contracts/*.json'",
-    "postinstall": "npx truffle compile && npm run generate-types"
+    "postinstall": "npx truffle compile && yarn run generate-types"
   },
   "repository": {
     "type": "git",

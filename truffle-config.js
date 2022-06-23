@@ -18,7 +18,7 @@
  * phrase from a file you've .gitignored so it doesn't accidentally become public.
  *
  */
-require('@truffle/hdwallet-provider');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 
 require('ts-node').register({
   files: true,
@@ -69,15 +69,14 @@ module.exports.networks = {
   // network_id: 2111,   // This network is yours, in the cloud.
   // production: true    // Treats this network as if it was a public net. (default: false)
   // }
+  // rinkeby: {
+  //   host: 'localhost',
+  //   port: 8545,
+  //   network_id: '4',
+  //   from: '0x647d61d93bda04a3c507f3ee34748e6e11771183',
+  //   gas: 4600000,
+  // },
   rinkeby: {
-    host: 'localhost',
-    port: 8545,
-    // eslint-disable-next-line camelcase
-    network_id: '4',
-    from: '0x647d61d93bda04a3c507f3ee34748e6e11771183',
-    gas: 4600000,
-  },
-  goerli: {
     provider: function () {
       return new HDWalletProvider(MNEMONIC, API_URL);
     },
